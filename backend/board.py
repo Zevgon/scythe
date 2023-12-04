@@ -65,3 +65,4 @@ b = Board()
 b.populate_map_with_starting_tokens(
     [Player("Jeremy", Faction.ALBION), Player("Yale", Faction.NORDIC)]
 )
+print(b)

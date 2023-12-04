@@ -1,12 +1,13 @@
 // webpack.config.js
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './index.tsx',
+  entry: './frontend/index.tsx',
   mode: 'development',
   output: {
-    filename: 'static/main.js',
-    path: path.resolve(__dirname, './'),
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'static'),
   },
   module: {
     rules: [
@@ -19,4 +20,7 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin(),
+  ],
 };
