@@ -20,8 +20,9 @@ class Tile:
         return f"\n  edges:\n    {edges}"
 
     # options can include:
-    #  - owner_faction
+    #  - owner_faction (which faction currently has control of the tile on the tile)
     #  - is_starting_tile
+    #  - starting_faction (which faction would start on this tile if included in the game)
     #  - has_encounter
     #  - is_tunnel
     def __init__(self, type, options=None):
@@ -33,6 +34,11 @@ class Tile:
         self.is_starting_tile = (
             options["is_starting_tile"]
             if options and "is_starting_tile" in options
+            else None
+        )
+        self.starting_faction = (
+            options["starting_faction"]
+            if options and "starting_faction" in options
             else None
         )
         self.has_encounter = (

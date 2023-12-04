@@ -26,23 +26,16 @@ class Board:
                         row[item_idx] = new_edge
                     else:
                         item_above = board_layout[row_idx - 1][item_idx]
-                        # If the edge above the current one is also an edge, that means the current
-                        # edge is a SE/NW connector (since edges are offset to the left). Otherwise it's
-                        # a SW/NE connector
-                        if item_above is None:
-                            continue
-                        if isinstance(item_above, Edge):
+                        item_above_left = board_layout[row_idx - 1][item_idx - 1]
+                        if isinstance(item_above, Tile):
+                            ne_tile = board_layout[row_idx - 1][item_idx]
+                            sw_tile = board_layout[row_idx + 1][item_idx - 1]
+                            new_edge = Tile.join(ne_tile, sw_tile, Direction.SW)
+                            row[item_idx] = new_edge
+                        elif isinstance(item_above_left, Tile):
                             nw_tile = board_layout[row_idx - 1][item_idx - 1]
                             se_tile = board_layout[row_idx + 1][item_idx]
                             new_edge = Tile.join(nw_tile, se_tile, Direction.SE)
-                            row[item_idx] = new_edge
-                        else:
-                            ne_tile = board_layout[row_idx - 1][item_idx]
-                            sw_tile = board_layout[row_idx + 1][item_idx - 1]
-                            print("NE TILE", ne_tile)
-                            print("SW TILE", sw_tile)
-                            print(row_idx, item_idx)
-                            new_edge = Tile.join(ne_tile, sw_tile, Direction.SW)
                             row[item_idx] = new_edge
 
         return starting_tiles

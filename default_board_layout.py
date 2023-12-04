@@ -1,6 +1,6 @@
 from edge import Edge
 from tile import Tile
-from enums import TileType
+from enums import TileType, Faction
 
 # Edge rows are offset to the left. E.g. if the first row is [tundra, edge, mountain]
 # and the second row is [edge, edge, edge], that means the first edge in the edge row
@@ -12,13 +12,13 @@ DEFAULT_BOARD_LAYOUT = [
         None,
         None,
         None,
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.ALBION}),
         None,
         None,
         None,
         None,
         None,
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.NORDIC}),
         None,
         None,
         None,
@@ -117,7 +117,7 @@ DEFAULT_BOARD_LAYOUT = [
     ],
     # Row 4 (includes Polania and Rusviet starting positions)
     [
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.POLANIA}),
         Edge(None, None),
         Tile(TileType.FOREST),
         Edge(None, None, True),
@@ -131,7 +131,7 @@ DEFAULT_BOARD_LAYOUT = [
         Edge(None, None, True),
         Tile(TileType.VILLAGE),
         Edge(None, None),
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.RUSVIET}),
     ],
     # Row 4.5
     [
@@ -261,7 +261,7 @@ DEFAULT_BOARD_LAYOUT = [
     ],
     # Row 8 (includes Saxony/Togawa starting positions)
     [
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.SAXONY}),
         Edge(None, None),
         Tile(TileType.TUNDRA),
         Edge(None, None),
@@ -275,7 +275,7 @@ DEFAULT_BOARD_LAYOUT = [
         Edge(None, None),
         Tile(TileType.FARM),
         Edge(None, None),
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.TOGAWA}),
     ],
     # Row 8.5
     [
@@ -302,7 +302,7 @@ DEFAULT_BOARD_LAYOUT = [
         None,
         None,
         None,
-        Tile(None, {"is_starting_tile": True}),
+        Tile(None, {"is_starting_tile": True, "starting_faction": Faction.CRIMEA}),
         Edge(None, None),
         Tile(TileType.VILLAGE),
         None,
@@ -314,16 +314,3 @@ DEFAULT_BOARD_LAYOUT = [
         None,
     ],
 ]
-
-print(len(set([len(r) for r in DEFAULT_BOARD_LAYOUT])) == 1)
-
-items = [item for sublist in DEFAULT_BOARD_LAYOUT for item in sublist]
-print(
-    len(
-        [
-            item
-            for item in items
-            if item and hasattr(item, "has_encounter") and item.has_encounter
-        ]
-    )
-)
