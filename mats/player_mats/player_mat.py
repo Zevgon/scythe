@@ -29,7 +29,7 @@ REQUIRED_PROPERTIES = set(
 )
 
 
-class Mat:
+class PlayerMat:
     def __init__(self, **mat_layout):
         if set(mat_layout.keys()) != REQUIRED_PROPERTIES:
             missing_properties = ", ".join(
@@ -51,4 +51,4 @@ class Mat:
         pass
 
 
-print(Mat(**INDUSTRIAL_LAYOUT))
+print(PlayerMat(**INDUSTRIAL_LAYOUT))

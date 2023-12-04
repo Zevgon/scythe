@@ -8,6 +8,7 @@ class Player:
         self.faction = faction
         self.num_unplaced_workers = 8
         self.character = Character(faction)
+        self.coins = 0
 
     def place_workers(self, tile, num_workers):
         num_workers_to_place = min(num_workers, self.num_unplaced_workers)
