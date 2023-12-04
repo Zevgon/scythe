@@ -11,9 +11,7 @@ class Tile:
         return edge
 
     def __str__(self):
-        if self.type == None:
-            return f"{self.owner_faction} starting tile"
-        return f"{self.type}"
+        return self.__repr__()
 
     def __repr__(self):
         edges = "\n    ".join([str(edge) for edge in self.edges])
@@ -22,6 +20,7 @@ class Tile:
   Edges:
     {edges}
   Workers: {self.workers}
+  Character: {self.character}
 """
 
     # options can include:
@@ -79,6 +78,13 @@ class Tile:
             edge.tile2 for edge in self.edges if edge
         ]
         return [tile for tile in all_tiles_on_edges if tile != self]
+
+    def receive_character(self, character):
+        if self.character is not None:
+            raise Exception(
+                f"This tile already has {character.faction}'s character on it, cannot place another character"
+            )
+        self.character = character
 
     def receive_workers(self, workers):
         self.workers += workers

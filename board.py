@@ -50,6 +50,7 @@ class Board:
     def populate_map_with_starting_tokens(self, players):
         for player in players:
             starting_tile = self.graph[player.faction]
+            player.place_character(starting_tile)
             adjacent_non_lake_tiles = [
                 tile
                 for tile in starting_tile.get_adjacent_tiles()
