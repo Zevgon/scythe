@@ -17,7 +17,12 @@ class Tile:
 
     def __repr__(self):
         edges = "\n    ".join([str(edge) for edge in self.edges])
-        return f"\n  edges:\n    {edges}"
+        return f"""
+  Type: {self.type},
+  Edges:
+    {edges}
+  Workers: {self.workers}
+"""
 
     # options can include:
     #  - owner_faction (which faction currently has control of the tile on the tile)
@@ -50,6 +55,15 @@ class Tile:
 
         self.edges = [None, None, None, None, None, None]
 
+        self.workers = []
+        self.num_foods = 0
+        self.num_steels = 0
+        self.num_woods = 0
+        self.num_oils = 0
+        self.character = None
+        self.mechs = []
+        self.buildings = []
+
     # "side" is a number corresponding to the side of the hex that the edge is on
     # 0 = NE side
     # 1 = E side
@@ -59,3 +73,12 @@ class Tile:
     # 5 = NW side
     def add_edge(self, edge, side_direction):
         self.edges[int(side_direction)] = edge
+
+    def get_adjacent_tiles(self):
+        all_tiles_on_edges = [edge.tile1 for edge in self.edges if edge] + [
+            edge.tile2 for edge in self.edges if edge
+        ]
+        return [tile for tile in all_tiles_on_edges if tile != self]
+
+    def receive_workers(self, workers):
+        self.workers += workers
