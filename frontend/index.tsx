@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import io from 'socket.io-client';
 
 const App = () => {
-  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
   const [receivedMessage, setReceivedMessage] = useState('');
 
   useEffect(() => {
@@ -12,7 +12,8 @@ const App = () => {
 
     // Event handler for receiving messages from the server
     socket.on('message', (msg) => {
-      setReceivedMessage(msg);
+      console.log(msg)
+      setReceivedMessage(msg.board);
     });
 
     // Clean up the WebSocket connection on component unmount
@@ -24,15 +25,15 @@ const App = () => {
   // Function to send a message to the server
   const sendMessage = useCallback(() => {
     const socket = io('http://127.0.0.1:5000');  // Replace with your Flask server URL
-    socket.emit('message', message);
-  }, [message]);
+    socket.emit('message', { type: messageType });
+  }, [messageType]);
 
   return (
     <div>
     <h1>WebSocket Example</h1>
     <div>
       <label>Message:</label>
-      <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} />
+      <input type="text" value={messageType} onChange={(e) => setMessageType(e.target.value)} />
       <button onClick={sendMessage}>Send</button>
     </div>
     <div>
