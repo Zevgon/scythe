@@ -2,10 +2,17 @@ from enum import Enum
 
 
 class MechAbilityType(Enum):
+    # Nordic
     RIVERWALK = "RIVERWALK"
     SEAWORTHY = "SEAWORTHY"
     ARTILLERY = "ARTILLERY"
     SPEED = "SPEED"
+
+    # Albion
+    BURROW = "BURROW"
+    SWORD = "SWORD"
+    SHIELD = "SHIELD"
+    RALLY = "RALLY"
 
 
 class MechAbility:

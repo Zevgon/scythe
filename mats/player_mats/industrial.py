@@ -16,11 +16,11 @@ INDUSTRIAL = {
     "bolster_power_reward_slots": [
         ActionReward(Currency.POWER),
         ActionReward(Currency.POWER),
-        ActionReward(Currency.POWER, is_upgradable=True),
+        ActionReward(Currency.POWER, can_have_token=True),
     ],
     "bolster_card_reward_slots": [
         ActionReward(Currency.CARD),
-        ActionReward(Currency.CARD, is_upgradable=True),
+        ActionReward(Currency.CARD, can_have_token=True),
     ],
     "monument_reward_slot": ActionReward(Currency.POPULARITY),
     # Produce
@@ -42,11 +42,11 @@ INDUSTRIAL = {
     "move_slots": [
         ActionReward(Currency.MOVEMENT),
         ActionReward(Currency.MOVEMENT),
-        ActionReward(Currency.MOVEMENT, is_upgradable=True),
+        ActionReward(Currency.MOVEMENT, can_have_token=True),
     ],
     "gain_slots": [
         ActionReward(Currency.COIN),
-        ActionReward(Currency.COIN, is_upgradable=True),
+        ActionReward(Currency.COIN, can_have_token=True),
     ],
     # Trade
     "trade_cost_slots": [
@@ -58,52 +58,52 @@ INDUSTRIAL = {
     ],
     "pop_trade_reward_slots": [
         ActionReward(Currency.POPULARITY),
-        ActionReward(Currency.POPULARITY, is_upgradable=True),
+        ActionReward(Currency.POPULARITY, can_have_token=True),
     ],
     "armory_reward_slot": [
-        ActionReward(Currency.POWER, is_upgradable=True),
+        ActionReward(Currency.POWER, can_have_token=True),
     ],
     # Upgrade
     "upgrade_cost_slots": [
         ActionCost(Currency.OIL),
         ActionCost(Currency.OIL),
-        ActionCost(Currency.OIL, is_upgradable=True),
+        ActionCost(Currency.OIL, can_have_token=True),
     ],
     "upgrade_reward_slots": [
         ActionReward(Currency.COIN),
         ActionReward(Currency.COIN),
         ActionReward(Currency.COIN),
-        ActionReward(Currency.POWER, is_upgradable=True),
+        ActionReward(Currency.POWER, can_have_token=True),
     ],
     # Deploy
     "deploy_cost_slots": [
         ActionCost(Currency.STEEL),
-        ActionCost(Currency.STEEL, is_upgradable=True),
-        ActionCost(Currency.STEEL, is_upgradable=True),
+        ActionCost(Currency.STEEL, can_have_token=True),
+        ActionCost(Currency.STEEL, can_have_token=True),
     ],
     "deploy_reward_slots": [
         ActionReward(Currency.COIN),
         ActionReward(Currency.COIN),
-        ActionReward(Currency.COIN, is_upgradable=True),
+        ActionReward(Currency.COIN, can_have_token=True),
     ],
     # Build
     "build_cost_slots": [
         ActionCost(Currency.WOOD),
         ActionCost(Currency.WOOD),
-        ActionCost(Currency.WOOD, is_upgradable=True),
+        ActionCost(Currency.WOOD, can_have_token=True),
     ],
     "build_reward_slots": [
         ActionReward(Currency.COIN),
-        ActionReward(Currency.POPULARITY, is_upgradable=True),
+        ActionReward(Currency.POPULARITY, can_have_token=True),
     ],
     # Enlist
     "enlist_cost_slots": [
         ActionCost(Currency.FOOD),
         ActionCost(Currency.FOOD),
-        ActionCost(Currency.FOOD, is_upgradable=True),
-        ActionCost(Currency.FOOD, is_upgradable=True),
+        ActionCost(Currency.FOOD, can_have_token=True),
+        ActionCost(Currency.FOOD, can_have_token=True),
     ],
     "enlist_reward_slots": [
-        ActionReward(Currency.CARD, is_upgradable=True),
+        ActionReward(Currency.CARD, can_have_token=True),
     ],
 }
