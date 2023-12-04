@@ -1,4 +1,10 @@
-from industrial_layout import INDUSTRIAL_LAYOUT
+import os
+import sys
+
+sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from industrial import INDUSTRIAL
+from utils import validate_mat
 
 REQUIRED_PROPERTIES = set(
     [
@@ -31,19 +37,7 @@ REQUIRED_PROPERTIES = set(
 
 class PlayerMat:
     def __init__(self, **mat_layout):
-        if set(mat_layout.keys()) != REQUIRED_PROPERTIES:
-            missing_properties = ", ".join(
-                REQUIRED_PROPERTIES.difference(set(mat_layout.keys()))
-            )
-            error_message = "Mat does not meet requirements."
-            if missing_properties:
-                error_message += f"\n  Missing properties: {missing_properties}"
-            extra_properties = ", ".join(
-                set(mat_layout.keys()).difference(REQUIRED_PROPERTIES)
-            )
-            if missing_properties:
-                error_message += f"\n  Extra properties: {extra_properties}"
-            raise Exception(error_message)
+        validate_mat(REQUIRED_PROPERTIES, mat_layout)
         for key, value in mat_layout.items():
             setattr(self, key, value)
 
@@ -51,4 +45,4 @@ class PlayerMat:
         pass
 
 
-print(PlayerMat(**INDUSTRIAL_LAYOUT))
+print(PlayerMat(**INDUSTRIAL))

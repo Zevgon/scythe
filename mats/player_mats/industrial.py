@@ -7,7 +7,7 @@ sys.path.insert(1, os.path.join(sys.path[0], ".."))
 from transaction_types import ActionReward, ActionCost, Currency
 
 
-INDUSTRIAL_LAYOUT = {
+INDUSTRIAL = {
     "starting_coins": 4,
     "starting_popularity": 2,
     "num_objectives": 2,

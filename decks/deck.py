@@ -15,6 +15,7 @@ class Deck:
             cards.append(BattleCard(4))
         for _ in range(6):
             cards.append(BattleCard(5))
+        return cards
 
     def __init__(self, cards, shuffle=True):
         self.cards = deque(cards)
