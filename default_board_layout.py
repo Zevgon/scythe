@@ -207,7 +207,7 @@ DEFAULT_BOARD_LAYOUT = [
     ],
     # Row 6.5
     [
-        Edge(None, None, True),
+        None,
         Edge(None, None, True),
         Edge(None, None, True),
         Edge(None, None, True),
@@ -304,7 +304,7 @@ DEFAULT_BOARD_LAYOUT = [
         None,
         Tile(None, {"is_starting_tile": True}),
         Edge(None, None),
-        Tile(TileType.VILLAGE, {"is_starting_tile": True}),
+        Tile(TileType.VILLAGE),
         None,
         None,
         None,

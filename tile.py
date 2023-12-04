@@ -8,6 +8,7 @@ class Tile:
         edge = Edge(tile1, tile2, is_river)
         tile1.add_edge(edge, tile1_side_direction)
         tile2.add_edge(edge, get_opposite_side_of_hex(tile1_side_direction))
+        return edge
 
     def __str__(self):
         if self.type == None:
