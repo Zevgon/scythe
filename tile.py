@@ -24,7 +24,6 @@ class Tile:
     #  - has_encounter
     #  - is_tunnel
     def __init__(self, type, options=None):
-        print("OPTIONNNNNNNNNS", options)
         self.type = type
 
         self.owner_faction = (

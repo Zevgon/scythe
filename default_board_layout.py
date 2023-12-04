@@ -51,7 +51,7 @@ DEFAULT_BOARD_LAYOUT = [
         Edge(None, None),
         Tile(TileType.FARM),
         Edge(None, None),
-        Tile(TileType.VILLAGE),
+        Tile(TileType.VILLAGE, {"has_encounter": True}),
         Edge(None, None, True),
         Tile(TileType.FOREST),
         Edge(None, None),
@@ -84,17 +84,17 @@ DEFAULT_BOARD_LAYOUT = [
         None,
         Tile(TileType.LAKE),
         Edge(None, None),
-        Tile(TileType.TUNDRA),
+        Tile(TileType.TUNDRA, {"has_encounter": True}),
         Edge(None, None),
         Tile(TileType.LAKE),
         Edge(None, None),
         Tile(TileType.TUNDRA, {"is_tunnel": True}),
         Edge(None, None, True),
-        Tile(TileType.MOUNTAIN),
+        Tile(TileType.MOUNTAIN, {"has_encounter": True}),
         Edge(None, None, True),
         Tile(TileType.FARM),
         Edge(None, None),
-        Tile(TileType.FARM),
+        Tile(TileType.FARM, {"has_encounter": True}),
         None,
     ],
     # Row 3.5
@@ -316,3 +316,14 @@ DEFAULT_BOARD_LAYOUT = [
 ]
 
 print(len(set([len(r) for r in DEFAULT_BOARD_LAYOUT])) == 1)
+
+items = [item for sublist in DEFAULT_BOARD_LAYOUT for item in sublist]
+print(
+    len(
+        [
+            item
+            for item in items
+            if item and hasattr(item, "has_encounter") and item.has_encounter
+        ]
+    )
+)
