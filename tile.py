@@ -2,7 +2,7 @@ from edge import Edge
 from utils import get_opposite_side_of_hex
 
 
-class Hex:
+class Tile:
     @classmethod
     def join(cls, tile1, tile2, tile1_side_direction, is_river=False):
         edge = Edge(tile1, tile2, is_river)
@@ -24,6 +24,7 @@ class Hex:
     #  - has_encounter
     #  - is_tunnel
     def __init__(self, type, options=None):
+        print("OPTIONNNNNNNNNS", options)
         self.type = type
 
         self.owner_faction = (
