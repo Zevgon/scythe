@@ -1,10 +1,4 @@
-import sys
-import os
-
-# TODO: yuck smh why th are python imports still so hard lol
-sys.path.insert(1, os.path.join(sys.path[0], ".."))
-
-from transaction_types import ActionReward, ActionCost, Currency
+from backend.mats.transaction_types import ActionReward, ActionCost, Currency
 
 
 INDUSTRIAL = {

@@ -1,9 +1,3 @@
-import sys
-import os
-
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
 from transaction_types import ActionReward, Currency
 from tokens.mech import MechAbility, MechAbilityType
 from mech_ability_slot import MechAbilitySlot

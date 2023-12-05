@@ -1,10 +1,5 @@
-import os
-import sys
-
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from industrial import INDUSTRIAL
-from utils import validate_mat
+from backend.mats.player_mats.industrial import INDUSTRIAL
+from backend.mats.utils import validate_mat
 
 REQUIRED_PROPERTIES = set(
     [

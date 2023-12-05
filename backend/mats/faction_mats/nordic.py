@@ -1,13 +1,7 @@
-import sys
-import os
-
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-from transaction_types import ActionReward, Currency
-from tokens.mech import MechAbility, MechAbilityType
-from enums import TileType
-from mech_ability_slot import MechAbilitySlot
+from backend.mats.transaction_types import ActionReward, Currency
+from backend.tokens.mech import MechAbility, MechAbilityType
+from backend.enums import TileType
+from backend.mats.faction_mats.mech_ability_slot import MechAbilitySlot
 
 NORDIC = {
     "starting_power": 4,

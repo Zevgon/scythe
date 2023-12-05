@@ -1,10 +1,5 @@
-import sys
-import os
-
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from utils import validate_mat
-from nordic import NORDIC
+from backend.mats.utils import validate_mat
+from backend.mats.faction_mats.nordic import NORDIC
 
 REQUIRED_PROPERTIES = set(
     [
