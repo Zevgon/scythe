@@ -1,5 +1,5 @@
-from tokens.worker import Worker
-from tokens.character import Character
+from backend.tokens.worker import Worker
+from backend.tokens.character import Character
 
 
 class Player:

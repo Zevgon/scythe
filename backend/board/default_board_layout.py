@@ -1,11 +1,6 @@
-import sys
-import os
-
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from edge import Edge
-from tile import Tile
-from enums import TileType, Faction
+from backend.board.edge import Edge
+from backend.board.tile import Tile
+from backend.enums import TileType, Faction
 
 # Edge rows are offset to the left. E.g. if the first row is [tundra, edge, mountain]
 # and the second row is [edge, edge, edge], that means the first edge in the edge row

@@ -1,3 +1,4 @@
+from json import JSONEncoder
 from enum import Enum
 
 
@@ -43,3 +44,10 @@ class Faction(Enum):
     ALBION = "ALBION"
     POLANIA = "POLANIA"
     SAXONY = "SAXONY"
+
+
+class FactionEncoder(JSONEncoder):
+    def default(self, faction):
+        if not isinstance(faction, Faction):
+            return super().default(faction)
+        return faction.value

@@ -1,14 +1,10 @@
-import sys
-import os
+import json
 from copy import deepcopy
-
-sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
-
-from default_board_layout import DEFAULT_BOARD_LAYOUT
-from tile import Tile
-from edge import Edge
-from ..enums import Direction, Faction, TileType
-from ..player import Player
+from backend.board.default_board_layout import DEFAULT_BOARD_LAYOUT
+from backend.board.tile import Tile
+from backend.board.edge import Edge
+from backend.enums import Direction, Faction, TileType
+from backend.player import Player
 
 
 class Board:
@@ -44,13 +40,15 @@ class Board:
                             new_edge = Tile.join(nw_tile, se_tile, Direction.SE)
                             row[item_idx] = new_edge
 
-        return {tile.starting_faction.value: tile for tile in starting_tiles}
+        return {
+            tile.starting_faction.value: tile for tile in starting_tiles
+        }, board_layout
 
     def __str__(self):
         return str(self.graph)
 
     def __init__(self):
-        self.graph = self.create_graph_from_board_layout()
+        self.graph, self.matrix = self.create_graph_from_board_layout()
 
     def populate_map_with_starting_tokens(self, players):
         for player in players:
@@ -64,6 +62,28 @@ class Board:
 
             for tile in adjacent_non_lake_tiles:
                 player.place_workers(tile, 1)
+
+    def serialize(self):
+        return [self.serialize_row(row) for row in self.matrix]
+
+    def serialize_row(self, row):
+        return [self.serialize_item(item) for item in row]
+
+    def serialize_item(self, item):
+        if item is None:
+            return None
+        elif isinstance(item, Tile):
+            return self.serialize_tile(item)
+        elif isinstance(item, Edge):
+            return self.serialize_edge(item)
+        else:
+            raise Exception("Unrecognized board item, cannot serialize")
+
+    def serialize_tile(self, tile):
+        return json.dumps(tile)
+
+    def serialize_edge(self, edge):
+        return "2"
 
 
 b = Board()

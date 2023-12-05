@@ -1,8 +1,10 @@
-from edge import Edge
-from utils import get_opposite_side_of_hex
+from json import JSONEncoder
+from backend.board.edge import Edge
+from backend.utils import get_opposite_side_of_hex
 
 
 class Tile:
+    # tile1_side_direction indicates the direction to connect tile2 onto, from tile1's perspective
     @classmethod
     def join(cls, tile1, tile2, tile1_side_direction, is_river=False):
         edge = Edge(tile1, tile2, is_river)
@@ -23,8 +25,9 @@ class Tile:
   Character: {self.character}
 """
 
-    # options can include:
-    #  - owner_faction (which faction currently has control of the tile on the tile)
+    # type: e.g. FOREST/FARM/FACTORY/etc., see TileType for all possible values
+    # options:
+    #  - owner_faction (which faction currently has control of the tile)
     #  - is_starting_tile
     #  - starting_faction (which faction would start on this tile if included in the game)
     #  - has_encounter
@@ -61,9 +64,9 @@ class Tile:
         self.num_oils = 0
         self.character = None
         self.mechs = []
-        self.buildings = []
+        self.building = None
 
-    # "side" is a number corresponding to the side of the hex that the edge is on
+    # int(side_direction) returns a number corresponding to the side of the hex that the edge is on
     # 0 = NE side
     # 1 = E side
     # 2 = SE side
@@ -88,3 +91,10 @@ class Tile:
 
     def receive_workers(self, workers):
         self.workers += workers
+
+
+class TileEncoder(JSONEncoder):
+    def default(self, tile):
+        if not isinstance(tile, Tile):
+            return super().default(tile)
+        return self.__dict__

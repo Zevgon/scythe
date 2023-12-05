@@ -1,6 +1,11 @@
 from backend.board.board import Board
+from backend.tokens.worker import Worker, WorkerEncoder
 from backend.player import Player
 from backend.enums import Faction
+import json
+
+
+print(json.dumps(Worker(Faction.ALBION), cls=WorkerEncoder))
 
 
 class MessageHandler:
@@ -12,7 +17,7 @@ class MessageHandler:
         board.populate_map_with_starting_tokens(
             [Player("Jeremy", Faction.ALBION), Player("Yale", Faction.NORDIC)]
         )
-        print(board)
+        print(board.serialize())
         response = {"type": "getBoard", "board": "123"}
         self.socket.emit("message", response)
 
