@@ -1,9 +1,14 @@
-from tile import Tile
-from enums import TileType, Direction, Faction
-from default_board_layout import DEFAULT_BOARD_LAYOUT
-from edge import Edge
+import sys
+import os
 from copy import deepcopy
-from player import Player
+
+sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), ".")))
+
+from default_board_layout import DEFAULT_BOARD_LAYOUT
+from tile import Tile
+from edge import Edge
+from ..enums import Direction, Faction, TileType
+from ..player import Player
 
 
 class Board:
@@ -39,7 +44,7 @@ class Board:
                             new_edge = Tile.join(nw_tile, se_tile, Direction.SE)
                             row[item_idx] = new_edge
 
-        return {tile.starting_faction: tile for tile in starting_tiles}
+        return {tile.starting_faction.value: tile for tile in starting_tiles}
 
     def __str__(self):
         return str(self.graph)
@@ -49,7 +54,7 @@ class Board:
 
     def populate_map_with_starting_tokens(self, players):
         for player in players:
-            starting_tile = self.graph[player.faction]
+            starting_tile = self.graph[player.faction.value]
             player.place_character(starting_tile)
             adjacent_non_lake_tiles = [
                 tile
