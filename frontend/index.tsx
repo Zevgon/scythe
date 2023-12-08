@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import { createRoot } from "react-dom/client";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 
 const App = () => {
   const [messageType, setMessageType] = useState("");
@@ -13,7 +13,6 @@ const App = () => {
 
   useEffect(() => {
     const socket = io("http://127.0.0.1:5000");
-
     socket.on("message", (msg) => {
       console.log(msg);
       setReceivedMessage(msg.board);

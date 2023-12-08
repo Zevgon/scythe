@@ -38,6 +38,3 @@ class PlayerMat:
 
     def receive_workers(self):
         pass
-
-
-print(PlayerMat(**INDUSTRIAL))

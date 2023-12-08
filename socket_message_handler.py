@@ -1,11 +1,7 @@
+import json
 from backend.board.board import Board
-from backend.tokens.worker import Worker, WorkerEncoder
 from backend.player import Player
 from backend.enums import Faction
-import json
-
-
-print(json.dumps(Worker(Faction.ALBION), cls=WorkerEncoder))
 
 
 class MessageHandler:
@@ -18,10 +14,11 @@ class MessageHandler:
             [Player("Jeremy", Faction.ALBION), Player("Yale", Faction.NORDIC)]
         )
         print(board.serialize())
-        response = {"type": "getBoard", "board": "123"}
+        response = {"type": "getBoard", "board": json.dumps(board.serialize())}
+        # response = {"type": "getBoard", "board": "123"}
         self.socket.emit("message", response)
 
-    def handle_default(self):
+    def handle_default(self, message):
         # Default handler for unknown message types
         response = {"type": "error", "data": "Unknown message type"}
         self.socket.emit("message", response)

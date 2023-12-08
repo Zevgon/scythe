@@ -16,6 +16,3 @@ class FactionMat:
         validate_mat(REQUIRED_PROPERTIES, faction_mat)
         for key, value in faction_mat.items():
             setattr(self, key, value)
-
-
-print(FactionMat(**NORDIC))

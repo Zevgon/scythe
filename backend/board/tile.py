@@ -1,6 +1,8 @@
+import json
 from json import JSONEncoder
 from backend.board.edge import Edge
 from backend.utils import get_opposite_side_of_hex
+from backend.enums import FactionEncoder
 
 
 class Tile:
@@ -92,9 +94,16 @@ class Tile:
     def receive_workers(self, workers):
         self.workers += workers
 
-
-class TileEncoder(JSONEncoder):
-    def default(self, tile):
-        if not isinstance(tile, Tile):
-            return super().default(tile)
-        return self.__dict__
+    def serialize(self):
+        return {
+            **self.__dict__,
+            "owner_faction": self.owner_faction.value if self.owner_faction else None,
+            "starting_faction": self.starting_faction.value
+            if self.starting_faction
+            else None,
+            # TODO
+            "edges": [],
+            "character": None,
+            "type": None,
+            "workers": [],
+        }

@@ -1,4 +1,3 @@
-import json
 from copy import deepcopy
 from backend.board.default_board_layout import DEFAULT_BOARD_LAYOUT
 from backend.board.tile import Tile
@@ -64,30 +63,15 @@ class Board:
                 player.place_workers(tile, 1)
 
     def serialize(self):
-        return [self.serialize_row(row) for row in self.matrix]
-
-    def serialize_row(self, row):
-        return [self.serialize_item(item) for item in row]
-
-    def serialize_item(self, item):
-        if item is None:
-            return None
-        elif isinstance(item, Tile):
-            return self.serialize_tile(item)
-        elif isinstance(item, Edge):
-            return self.serialize_edge(item)
-        else:
-            raise Exception("Unrecognized board item, cannot serialize")
-
-    def serialize_tile(self, tile):
-        return json.dumps(tile)
-
-    def serialize_edge(self, edge):
-        return "2"
+        serialized_matrix = []
+        for row in self.matrix:
+            serialized_matrix.append(
+                [item.serialize() if item else None for item in row]
+            )
+        return serialized_matrix
 
 
 b = Board()
 b.populate_map_with_starting_tokens(
     [Player("Jeremy", Faction.ALBION), Player("Yale", Faction.NORDIC)]
 )
-print(b)
